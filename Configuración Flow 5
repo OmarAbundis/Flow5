@@ -13,3 +13,28 @@ https://api.openweathermap.org/data/2.5/weather?lat=19.613627&lon=-99.093537&app
 
 
 19.613627, -99.093537
+
+
+
+Ahora se van a agregar la uvi y ozono.
+
+https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}&units=metric 
+
+Con cambios
+
+https://api.openweathermap.org/data/2.5/onecall?lat=19.613627&lon=-99.093537&exclude=hourly,daily&appid=82c1663b7cefbdb52b88552df651510d&units=metric 
+
+msg.payload = msg.payload.current.uvi
+global.set("uviFlow5",msg.payload);
+return msg;
+
+
+
+Llamada general
+http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&appid={API key}
+
+http://api.openweathermap.org/data/2.5/air_pollution?lat=19.613627&lon=-99.093537&appid=82c1663b7cefbdb52b88552df651510d&
+
+
+
+

@@ -15,7 +15,7 @@
         "method": "GET",
         "ret": "txt",
         "paytoqs": "ignore",
-        "url": "https://api.openweathermap.org/data/2.5/weather?lat=19.613627&lon=-99.093537&appid=82c1663b7cefbdb52b88552df651510d&units=metric",
+        "url": "https://api.openweathermap.org/data/2.5/onecall?lat=19.613627&lon=-99.093537&exclude=hourly,daily&appid=82c1663b7cefbdb52b88552df651510d&units=metric ",
         "tls": "",
         "persist": false,
         "proxy": "",
@@ -42,7 +42,8 @@
         "wires": [
             [
                 "cbf034706c957626",
-                "e55d990ed67964b9"
+                "e55d990ed67964b9",
+                "94362c0f0f566605"
             ]
         ]
     },
@@ -62,7 +63,7 @@
         ],
         "repeat": "120",
         "crontab": "",
-        "once": true,
+        "once": false,
         "onceDelay": 0.1,
         "topic": "",
         "payload": "",
@@ -71,7 +72,8 @@
         "y": 60,
         "wires": [
             [
-                "89f528c3fd124833"
+                "89f528c3fd124833",
+                "1718a55e8f2fbecb"
             ]
         ]
     },
@@ -80,7 +82,7 @@
         "type": "function",
         "z": "7f56031dd318cf16",
         "name": "Temperatura",
-        "func": "msg.payload = msg.payload.main.temp;\nglobal.set(\"tempFlow5\",msg.payload);\nreturn msg;",
+        "func": "msg.payload = msg.payload.current.temp;\nglobal.set(\"tempFlow5\",msg.payload);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -100,9 +102,9 @@
         "z": "7f56031dd318cf16",
         "name": "",
         "group": "7ba1143cae7a1c65",
-        "order": 0,
-        "width": "0",
-        "height": "0",
+        "order": 1,
+        "width": 0,
+        "height": 0,
         "gtype": "gage",
         "title": "Temperatura",
         "label": "°C",
@@ -110,12 +112,12 @@
         "min": 0,
         "max": "40",
         "colors": [
+            "#0094ce",
             "#00b500",
-            "#e6e600",
             "#ca3838"
         ],
-        "seg1": "",
-        "seg2": "",
+        "seg1": "14",
+        "seg2": "26",
         "className": "",
         "x": 990,
         "y": 60,
@@ -127,7 +129,7 @@
         "z": "7f56031dd318cf16",
         "name": "",
         "group": "7ba1143cae7a1c65",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "gtype": "gage",
@@ -153,7 +155,7 @@
         "type": "function",
         "z": "7f56031dd318cf16",
         "name": "Humedad",
-        "func": "msg.payload = msg.payload.main.humidity\nglobal.set(\"humFlow5\",msg.payload);\nreturn msg;",
+        "func": "msg.payload = msg.payload.current.humidity\nglobal.set(\"humFlow5\",msg.payload);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -180,8 +182,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 140,
-        "y": 280,
+        "x": 120,
+        "y": 440,
         "wires": [
             [
                 "a7a1ea2c1718d9d0"
@@ -196,12 +198,14 @@
         "property": "payload",
         "action": "obj",
         "pretty": false,
-        "x": 370,
-        "y": 280,
+        "x": 350,
+        "y": 440,
         "wires": [
             [
                 "41a240fe2ce61cbc",
-                "38623ddb9ebbad52"
+                "38623ddb9ebbad52",
+                "27181aafbea08f12",
+                "c4e299ea05ce61a1"
             ]
         ]
     },
@@ -216,8 +220,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 550,
-        "y": 280,
+        "x": 530,
+        "y": 440,
         "wires": [
             [
                 "64f727b82ca1734c"
@@ -230,9 +234,9 @@
         "z": "7f56031dd318cf16",
         "name": "",
         "group": "f205f9a598f87d23",
-        "order": 0,
-        "width": "0",
-        "height": "0",
+        "order": 1,
+        "width": 0,
+        "height": 0,
         "label": "Temperatura",
         "chartType": "line",
         "legend": "true",
@@ -263,7 +267,7 @@
         "useDifferentColor": false,
         "className": "",
         "x": 770,
-        "y": 280,
+        "y": 440,
         "wires": [
             []
         ]
@@ -279,8 +283,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 540,
-        "y": 380,
+        "x": 520,
+        "y": 540,
         "wires": [
             [
                 "cd93761fead81aed"
@@ -293,7 +297,7 @@
         "z": "7f56031dd318cf16",
         "name": "",
         "group": "f205f9a598f87d23",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "label": "Humedad",
@@ -325,8 +329,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 740,
-        "y": 380,
+        "x": 720,
+        "y": 540,
         "wires": [
             []
         ]
@@ -352,31 +356,12 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 130,
-        "y": 500,
+        "x": 110,
+        "y": 800,
         "wires": [
             [
-                "a945761abd6d3043"
-            ]
-        ]
-    },
-    {
-        "id": "a945761abd6d3043",
-        "type": "function",
-        "z": "7f56031dd318cf16",
-        "name": "",
-        "func": "msg.payload = '{\"id\":\"Omar_Abundis\",\"temp\":'+global.get(\"tempFlow5\") +',\"hum\":'+ global.get(\"humFlow5\")+'}';\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 360,
-        "y": 500,
-        "wires": [
-            [
-                "eccb77c28c139341",
-                "17a90b05cb4d1cea"
+                "17a90b05cb4d1cea",
+                "8fa57360ff25d126"
             ]
         ]
     },
@@ -392,8 +377,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 590,
-        "y": 580,
+        "x": 570,
+        "y": 880,
         "wires": []
     },
     {
@@ -410,8 +395,8 @@
         "correl": "",
         "expiry": "",
         "broker": "e35d23e5bdd3e3e1",
-        "x": 640,
-        "y": 500,
+        "x": 620,
+        "y": 800,
         "wires": []
     },
     {
@@ -430,8 +415,8 @@
         "z": "7f56031dd318cf16",
         "name": "Información general",
         "info": "",
-        "x": 130,
-        "y": 200,
+        "x": 110,
+        "y": 360,
         "wires": []
     },
     {
@@ -440,9 +425,284 @@
         "z": "7f56031dd318cf16",
         "name": "Enviador",
         "info": "",
-        "x": 120,
-        "y": 440,
+        "x": 100,
+        "y": 740,
         "wires": []
+    },
+    {
+        "id": "94362c0f0f566605",
+        "type": "function",
+        "z": "7f56031dd318cf16",
+        "name": "uvi",
+        "func": "msg.payload = msg.payload.current.uvi\nglobal.set(\"uviFlow5\",msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 240,
+        "wires": [
+            [
+                "4f19620c4105a4c2"
+            ]
+        ]
+    },
+    {
+        "id": "4f19620c4105a4c2",
+        "type": "ui_gauge",
+        "z": "7f56031dd318cf16",
+        "name": "",
+        "group": "7ba1143cae7a1c65",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "uvi",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "15",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 970,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "27181aafbea08f12",
+        "type": "function",
+        "z": "7f56031dd318cf16",
+        "name": "uvi",
+        "func": "msg.topic = msg.payload.id;\nmsg.payload = msg.payload.uv;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 620,
+        "wires": [
+            [
+                "5e6dad0c7adaf29a"
+            ]
+        ]
+    },
+    {
+        "id": "5e6dad0c7adaf29a",
+        "type": "ui_chart",
+        "z": "7f56031dd318cf16",
+        "name": "",
+        "group": "f205f9a598f87d23",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "uvi",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "1",
+        "ymax": "10",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 730,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1718a55e8f2fbecb",
+        "type": "http request",
+        "z": "7f56031dd318cf16",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://api.openweathermap.org/data/2.5/air_pollution?lat=19.613627&lon=-99.093537&appid=82c1663b7cefbdb52b88552df651510d&",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 350,
+        "y": 260,
+        "wires": [
+            [
+                "948dc97240f313b1"
+            ]
+        ]
+    },
+    {
+        "id": "948dc97240f313b1",
+        "type": "json",
+        "z": "7f56031dd318cf16",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 530,
+        "y": 260,
+        "wires": [
+            [
+                "c5d0cce41d0e703a"
+            ]
+        ]
+    },
+    {
+        "id": "c5d0cce41d0e703a",
+        "type": "function",
+        "z": "7f56031dd318cf16",
+        "name": "Calidad de aire",
+        "func": "msg.payload = msg.payload.list[0].main.aqi;\nglobal.set (\"aqi\", msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 320,
+        "wires": [
+            [
+                "dc4f517600b96612"
+            ]
+        ]
+    },
+    {
+        "id": "dc4f517600b96612",
+        "type": "ui_gauge",
+        "z": "7f56031dd318cf16",
+        "name": "",
+        "group": "7ba1143cae7a1c65",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Calidad de aire",
+        "label": "units",
+        "format": "{{value}}",
+        "min": "1",
+        "max": "5",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 1000,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "c4e299ea05ce61a1",
+        "type": "function",
+        "z": "7f56031dd318cf16",
+        "name": "Calidad del aire",
+        "func": "msg.topic = msg.payload.id;\nmsg.payload = msg.payload.aqi;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 700,
+        "wires": [
+            [
+                "407a43de07ef0158"
+            ]
+        ]
+    },
+    {
+        "id": "407a43de07ef0158",
+        "type": "ui_chart",
+        "z": "7f56031dd318cf16",
+        "name": "",
+        "group": "f205f9a598f87d23",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "label": "aqi",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 730,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8fa57360ff25d126",
+        "type": "function",
+        "z": "7f56031dd318cf16",
+        "name": "",
+        "func": "msg.payload = '{\"id\":\"Omar_ab\",\"temp\":' + global.get (\"tempFlow5\") + ',\"hum\":' + global.get (\"humFlow5\") + ',\"uv\":' + global.get (\"uvFlow5\") + ',\"aqi\":' + global.get (\"aqi\") + '}';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 800,
+        "wires": [
+            [
+                "eccb77c28c139341"
+            ]
+        ]
     },
     {
         "id": "7ba1143cae7a1c65",
@@ -451,7 +711,7 @@
         "tab": "67cd7e7546b0d308",
         "order": 1,
         "disp": true,
-        "width": "6",
+        "width": 6,
         "collapse": false,
         "className": ""
     },
@@ -459,7 +719,7 @@
         "id": "52a2bd9bb2b70f26",
         "type": "mqtt-broker",
         "name": "broker.hivemq.com",
-        "broker": "18.156.8.172",
+        "broker": "18.157.172.72",
         "port": "1883",
         "clientid": "",
         "autoConnect": true,
@@ -488,7 +748,7 @@
         "tab": "67cd7e7546b0d308",
         "order": 2,
         "disp": true,
-        "width": "6",
+        "width": 6,
         "collapse": false,
         "className": ""
     },
@@ -496,7 +756,7 @@
         "id": "e35d23e5bdd3e3e1",
         "type": "mqtt-broker",
         "name": "Broker Hivel MQ G7",
-        "broker": "18.156.8.172",
+        "broker": "18.157.172.72",
         "port": "1883",
         "clientid": "",
         "autoConnect": true,
