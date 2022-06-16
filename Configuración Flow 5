@@ -1,0 +1,15 @@
+Para generar la llave
+https://home.openweathermap.org/api_keys
+
+Para checar la información
+https://openweathermap.org/current
+
+Sustituir los datos solicitados
+
+https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
+https://api.openweathermap.org/data/2.5/weather?lat=57&lon=-2.15&appid={API key}&units=metric
+
+https://api.openweathermap.org/data/2.5/weather?lat=19.613627&lon=-99.093537&appid=82c1663b7cefbdb52b88552df651510d&units=metric
+
+
+19.613627, -99.093537
