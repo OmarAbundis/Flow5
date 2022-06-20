@@ -33,7 +33,14 @@ return msg;
 Llamada general
 http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&appid={API key}
 
-http://api.openweathermap.org/data/2.5/air_pollution?lat=19.613627&lon=-99.093537&appid=82c1663b7cefbdb52b88552df651510d&
+http://api.openweathermap.org/data/2.5/air_pollution?lat=19.613627&lon=-99.093537&appid=82c1663b7cefbdb52b88552df651510d
+
+
+Funcion Calidad del aire
+msg.payload = msg.payload.list[0].main.aqi;
+global.set ("aqi", msg.payload);
+return msg;
+
 
 
 
